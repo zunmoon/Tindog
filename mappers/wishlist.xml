@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- wishlist.xml -->
+
+<mapper namespace="wishlist">
+    
+	<insert id="insert" parameterType="kr.co.tindog.wishlist.WishlistDTO">
+		INSERT INTO WISHLIST(WISHLIST_NO, EMAIL, UPRODUCT_NO)
+		VALUES (CONCAT(TO_CHAR(CURRENT_DATE, 'YYYYMMDD'), '_', NEXTVAL(WISHLIST_SEQ)), #{email}, #{uproduct_no})
+	</insert>
+
+
+	<select id="list" parameterType="String"
+		resultType="kr.co.tindog.wishlist.WishlistDTO2">
+		SELECT USED_PRODUCT.MAINPHOTO, USED_PRODUCT.NICKNAME, USED_PRODUCT.SUBJECT, USED_PRODUCT.PRICE, WISHLIST.WISHLIST_NO
+        FROM USED_PRODUCT JOIN WISHLIST
+        ON USED_PRODUCT.UPRODUCT_NO = WISHLIST.UPRODUCT_NO
+        WHERE EMAIL=#{email}
+        ORDER BY WISHLIST_NO
+	</select>
+
+    
+    <delete id="delete" parameterType="java.util.HashMap">
+		DELETE FROM WISHLIST
+		WHERE WISHLIST_NO=#{no} AND EMAIL=#{s_email}
+	</delete>
+   
+	
+</mapper>

@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+ <mapper namespace="chat">
+ 
+ 	<select id="search" resultType="String">
+ 		SELECT NICKNAME
+ 		  FROM MEMBER
+ 		 WHERE EMAIL = #{followemail}
+ 	</select>
+ 	
+  	<select id="chatRoomCheck" parameterType="String" resultType="int">
+ 		SELECT IFNULL(MAX(DROOMNO), 0)
+ 		  FROM CHATROOM_DATING
+ 		 WHERE TOT_NICKNAME = CONCAT(#{nickname_to}, #{nickname_from})
+ 		    OR TOT_NICKNAME = CONCAT(#{nickname_from}, #{nickname_to})
+ 	</select> 
+ 	
+ 	<select id="checkGum" resultType="int">
+ 		SELECT GUMQTY
+ 		  FROM MEMBER
+ 		 WHERE NICKNAME = #{s_nickname}
+ 	</select>
+ 	
+ 	<update id="useGum" parameterType="String">
+ 		UPDATE MEMBER 
+ 		   SET GUMQTY = (GUMQTY - 1)
+ 		 WHERE NICKNAME = #{s_nickname}
+ 	</update>
+ 	
+ 	<insert id="chatRoomInsert" parameterType="kr.co.tindog.chat.ChatRoomDTO">
+ 		INSERT INTO CHATROOM_DATING(NICKNAME_TO, NICKNAME_FROM, TOT_NICKNAME)
+ 		VALUES(#{nickname_to}, #{nickname_from}, #{tot_nickname})
+ 	</insert>
+  	
+  	<select id="findDogName" resultType="java.util.Map">
+  		SELECT DNAME, NICKNAME, DROOMNO
+		  FROM DOGS D1
+		       JOIN (
+         		     SELECT EMAIL, M1.NICKNAME, DROOMNO
+					   FROM MEMBER M1
+						    JOIN (
+						          SELECT NICKNAME_TO AS NICKNAME, DROOMNO
+						            FROM CHATROOM_DATING
+						           WHERE TOT_NICKNAME LIKE CONCAT('%', #{s_nickname}, '%')
+						             AND NICKNAME_TO != #{s_nickname}
+						           UNION ALL
+						          SELECT NICKNAME_FROM AS NICKNAME, DROOMNO
+						            FROM CHATROOM_DATING
+						           WHERE TOT_NICKNAME LIKE CONCAT('%', #{s_nickname}, '%')
+						             AND NICKNAME_FROM != #{s_nickname}
+						          ) A1 ON A1.NICKNAME = M1.NICKNAME
+                	 ) M2 ON M2.EMAIL = D1.EMAIL
+         ORDER BY DROOMNO
+  	</select>
+  	
+  	<select id="findDogName2" resultType="String">
+  		SELECT DNAME
+		  FROM DOGS
+		 WHERE EMAIL = #{email}
+		   AND DOGORDER = 1
+  	</select>
+  	
+	<select id="roomList" resultType="java.util.Map">
+		SELECT DROOMNO, NICKNAME_TO, NICKNAME_FROM
+		  FROM CHATROOM_DATING
+		 WHERE TOT_NICKNAME LIKE #{nickname}
+	</select>
+	
+	<select id="chatLogs" resultType="java.util.Map">
+		SELECT DNAME, MESSAGE, SENDER
+		  FROM DOGS D1
+		       JOIN (
+					SELECT EMAIL, MESSAGE, SENDER
+					  FROM MEMBER M1
+					       JOIN (
+								SELECT MESSAGE, SENDER
+								  FROM CHATLOGS_DATING
+								 WHERE DROOMNO = #{droomno}
+					            ) C1 ON C1.SENDER = M1.NICKNAME
+		            ) M2 ON M2.EMAIL = D1.EMAIL
+	</select>
+ 	
+ 	<insert id="chatLogInsert" parameterType="kr.co.tindog.chat.ChatDTO">
+ 		INSERT INTO CHATLOGS_DATING(DROOMNO, MESSAGE, SENDER)
+ 						VALUES(#{droomno}, #{message}, #{sender})
+ 	</insert>
+ 	
+ 	<delete id="chatRoomDelete" parameterType="int">
+ 		DELETE FROM CHATROOM_DATING WHERE DROOMNO = #{droomno}
+ 	</delete>
+ 	
+ 	<select id="findEmail" resultType="String">
+ 		SELECT EMAIL FROM MEMBER WHERE NICKNAME = #{nickname} 
+ 	</select>
+ 	
+ 	<insert id="cut" parameterType="kr.co.tindog.cut.CutDTO">
+ 		INSERT INTO CUT(EMAIL, CUTEMAIL, CUTCASE)
+ 		         VALUES(#{email}, #{cutEmail}, #{cutCase})
+ 	</insert>
+ 	
+ 	<insert id="cutP" parameterType="kr.co.tindog.cut.CutDTO">
+ 		INSERT INTO CUT(EMAIL, CUTEMAIL, CUTCASE)
+ 		         VALUES(#{email}, #{cutEmail}, #{cutCase})
+ 	</insert>
+ </mapper>

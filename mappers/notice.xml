@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+     
+  
+<mapper namespace="notice">
+
+
+    <insert id="insert" parameterType="java.util.Map">
+		INSERT INTO notice(subject, writer, content) 
+		VALUES(#{subject}, #{writer}, #{content})
+	</insert>
+
+
+
+    <select id="list" resultType="java.util.HashMap" parameterType="java.util.HashMap">
+		SELECT noticeno,subject,writer,noticedate
+		FROM notice
+		ORDER BY noticeno
+		LIMIT #{start},5
+	</select>
+		
+	
+	<select id="count" resultType="int">
+        SELECT COUNT(*) FROM notice
+    </select> 
+    
+		
+	<select id="detail" resultType="java.util.Map"  parameterType="int">
+		SELECT noticeno, subject, writer, content 
+		FROM notice
+		WHERE noticeno = #{noticeno}
+	 </select>
+	 
+	 
+	 <delete id="delete" parameterType="int">
+		DELETE FROM notice
+		WHERE noticeno = #{noticeno} 
+	</delete>
+
+
+    <update id="update" parameterType="java.util.Map">
+		UPDATE notice
+		SET  subject=#{subject}
+			,writer=#{writer}
+			,content=#{content}
+		WHERE noticeno=#{noticeno}
+	</update>	
+	
+
+
+</mapper>
+
+

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+ <mapper namespace="worldcup">
+ 
+ 	<select id="worldcupImgList" parameterType="String" resultType="java.util.Map">
+ 	
+ 		select mainphoto, email
+ 		from dogs 
+ 		where gamereg = 'o' and email != #{email}
+ 		  and email not in (SELECT CUTEMAIL
+					 		  FROM CUT
+					 		 WHERE EMAIL = #{email})
+		  and email not in (SELECT EMAIL
+ 		  					  FROM CUT
+ 		 					 WHERE CUTEMAIL = #{email})	 	
+ 		order by rand() limit 16
+ 		
+ 	</select>
+ 	
+
+ 	<select id="worldcupOptionList" parameterType="kr.co.tindog.worldcup.DogDTO" resultType="java.util.Map">
+ 		SELECT mainphoto, email
+ 		FROM dogs
+ 		WHERE gamereg = 'o' AND email != #{email} AND age between 0 and #{age} AND purpose=#{purpose} AND size=#{size} AND sex=#{sex} AND neutral=#{neutral}
+ 		ORDER BY rand() limit 16
+ 	</select>
+
+ 	<select id="worldcupWinner" parameterType="String" resultType="java.util.Map">
+ 	   select *
+ 	   from dogs 
+ 	   where email = #{email}
+ 	</select>
+ 	
+ 	<select id="idelResult" parameterType="String" resultType="java.util.Map">
+ 		SELECT *
+ 		FROM DOGS
+ 		WHERE email=(	SELECT followemail
+ 						FROM follow
+ 						WHERE email=#{email} AND followno=(SELECT max(followno) FROM follow))
+ 	</select>
+ 	
+ 	<insert id="followInsert" parameterType="java.util.Map">
+ 	  INSERT INTO FOLLOW(EMAIL, FOLLOWEMAIL)	
+	   VALUES (#{s_email}, #{f_email})
+ 	</insert>
+ 	
+ 	<select id="dupCheck" parameterType="java.util.Map" resultType="String">
+ 		select * 
+		from follow
+		where email = #{s_email} and followemail = #{f_email}
+ 	
+
+ 	</select>
+ 	
+ </mapper>
