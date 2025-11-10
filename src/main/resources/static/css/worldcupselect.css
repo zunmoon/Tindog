@@ -1,0 +1,26 @@
+.spec_list{
+	border: 1px;
+	border-color: lightgray;
+}
+
+.spec_name{
+	display: flex;
+	font-size: 16px;
+	font-weight: 300;
+	color:rgb(38, 109, 217);
+	margin-top: 10px;
+	
+}
+
+.spec_content{
+	font-size: 12px;
+	margin: auto;	
+}
+
+.btn{
+	cursor: pointer;
+}
+
+label{
+	margin-left: 5px;
+}

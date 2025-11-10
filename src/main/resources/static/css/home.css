@@ -1,0 +1,27 @@
+.homebtn{
+	position: relative;
+	display: block;
+	text-align: center;	
+}
+
+.hbtn {	
+	position: relative;
+	margin-bottom: 40px;	
+	width: 400px;
+	height: 40px;
+	margin-top:20px;
+	background: linear-gradient(125deg, #81ecec, #6c5ce7, #81ecec);
+	background-position: left;
+	background-size: 200%;
+	border-radius: 10px;
+	color: white;
+	font-weight: bold;
+	border: none;
+	cursor: pointer;
+	transition: 0.4s;
+	display: inline;
+}
+
+.hbtn:hover{
+	background-position: right;
+}

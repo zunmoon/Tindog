@@ -1,0 +1,8 @@
+
+
+#DOGINFO LIST
+
+SELECT dogorder, dname, sex, dogcd, age, neutral, size, mainphoto, weight, dog_detail, gamereg, purpose, pic1, pic2, pic3
+FROM dogs A INNER JOIN dogpics B
+ON A.email = B.email
+WHERE A.email = 'webmaster@itwill.com';

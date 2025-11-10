@@ -1,0 +1,67 @@
+@charset "UTF-8";
+
+.cont{
+	margin-left: 100px;
+    margin-top: 20px;
+}
+
+
+/* layout */
+@import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
+
+
+/*
+	
+#userInfo-table > td, th, thead, tbody {
+  border: 1px solid #ddd;
+	color: black;
+}
+*/
+
+#userInfo-table {
+	width: 500px;
+	
+}
+
+#userInfo-table > tbody {
+  /*border: 1px solid #ddd;*/
+	color: black;
+}
+
+#userInfo-table > th {
+  /*border: 1px solid #ddd;*/
+	color: black;
+	width: 20%;
+}
+
+.userInfo{
+ width: 800px;
+ margin-top: 50px;
+ margin-left: 150px;
+}
+
+#userDefaultImg {
+	border-radius: 100px;
+
+	margin-bottom: 20px;
+	margin-left: 60px;
+	max-width: 120px;
+    max-height: 120px;
+    border: solid 1px darkgrey;
+    margin-bottom: 0px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.userInfoText {	
+	color: black;
+    font-size: 25px;
+    width: 100px;
+    height: 100px;
+    }
+    
+label{
+	
+	font-weight: 100;
+	margin-bottom: 0px;
+    margin-top: 5px;
+}

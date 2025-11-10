@@ -1,0 +1,38 @@
+@charset "UTF-8";
+
+
+#worldcupImgContainer > img{
+	
+	width: 500px;
+	height: 450px;
+	
+}
+
+
+
+#worldcup-tbody > td{
+	color: #fff;
+}
+
+#worldcup-tbody > th{
+	color: #fff;
+}
+
+#worldcup-tbody > thead{
+	color: #fff;
+}
+
+#worldcup-tbody > tbody{
+	color: #fff;
+}
+
+#worldcup-table{
+
+border-collapse: separate;
+    
+}
+
+#img-round16-container{
+text-align: center;
+	
+}

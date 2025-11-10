@@ -1,0 +1,104 @@
+@charset "UTF-8";
+
+.cont{
+	margin-left: 0px;
+    margin-top: 20px;
+}
+
+
+/* layout */
+@import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
+
+#dog-info-table{
+
+}
+
+#dog-info-table>tbody > th {
+width: 2px;
+}
+
+#dog-info-table>tbody> td{
+text-align: left;
+}
+
+
+#winnerInfo{
+
+display: flex;
+justify-content: center;
+
+}
+
+.card-title{
+
+margin-top: 20px;
+
+}
+
+
+.dogInfoText {
+	color: black;
+    font-size: 25px;
+    }
+
+
+.dogInfo{
+ margin-top: 20px;
+ color: black;
+ display: flex;
+ position: relative;
+
+}
+
+
+#dog1DetailImg{
+	border: 1px solid lightgrey;
+	margin-left: 306px;
+	margin-bottom: 20px;
+	max-width: 200px; /* 원하는 너비로 설정 */
+  max-height: 200px; /* 원하는 높이로 설정 */
+     display: flex;
+    position: absolute;
+}
+
+#dog1detail{
+
+    color: black;
+}
+
+.name-age{
+
+    font-size: 22px;
+    display: flex;
+    position: relative;
+    top: 270px;
+    right: 80px;
+}
+
+#dog1detail-content{
+	
+	display: flex;
+    position: relative;
+     top: 270px;
+    right: 100px;
+    width: 300px;
+}
+
+#carousel-img {
+    height: 350px !important;
+    object-fit: cover;
+    
+}
+
+
+#worldcup-switch{
+	display: flex;
+    position: relative;
+    top: 283px;
+    right: 26px;
+    font-size: 13px;
+}
+
+li, ul{
+	list-style: none;
+}

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+ <mapper namespace="productchat">
+ 	
+  	<select id="chatRoomCheck" parameterType="String" resultType="int">
+ 		SELECT IFNULL(MAX(PROOMNO), 0)
+ 		  FROM CHATROOM_UPRODUCT
+ 		 WHERE TOT_NICKNAME = CONCAT(#{nickname_to}, #{nickname_from})
+ 		    OR TOT_NICKNAME = CONCAT(#{nickname_from}, #{nickname_to})
+ 	</select> 
+ 	
+ 	<insert id="chatRoomInsert" parameterType="kr.co.tindog.product.chat.ProductChatRoomDTO">
+ 		INSERT INTO CHATROOM_UPRODUCT(NICKNAME_TO, NICKNAME_FROM, TOT_NICKNAME, UPRODUCT_NO)
+ 		VALUES(#{nickname_to}, #{nickname_from}, #{tot_nickname}, #{uproduct_no})
+ 	</insert>
+  	
+  	<select id="roomList" resultType="java.util.Map">
+		SELECT PROOMNO, NICKNAME_TO, NICKNAME_FROM
+		  FROM CHATROOM_UPRODUCT
+		 WHERE TOT_NICKNAME LIKE #{nickname}
+	</select>
+	
+	<delete id="chatRoomDelete" parameterType="int">
+ 		DELETE FROM CHATROOM_UPRODUCT WHERE PROOMNO = #{proomno}
+ 	</delete>
+ 	
+ 	<select id="chatLogs" resultType="java.util.Map">
+		SELECT MESSAGE, SENDER
+		  FROM CHATLOGS_UPRODUCT
+		 WHERE PROOMNO = #{proomno}
+	</select>
+ 	
+ 	<insert id="chatLogInsert" parameterType="kr.co.tindog.product.chat.ProductChatDTO">
+ 		INSERT INTO CHATLOGS_UPRODUCT(PROOMNO, MESSAGE, SENDER)
+ 						VALUES(#{proomno}, #{message}, #{sender})
+ 	</insert>
+ </mapper>

@@ -1,0 +1,154 @@
+#login{
+        position: relative;
+        width: 400px;
+        height: 300px;
+        margin: auto;
+        margin-bottom: 120px;
+    }
+    
+#login-title{
+        text-align: center;
+        font-size: 15px;
+        font-weight: bold;
+    }
+    
+#login-body .email-login-body{
+        text-align: left;
+        width: 400px;
+        height: 25px;
+        padding: 10px 10px 10px 10px;
+        border-radius: 10px;
+        margin-bottom: 10px;
+                
+    }
+    
+#login-body .password-login-body{
+        text-align: left;
+        width: 400px;
+        height: 25px;
+        padding: 10px 10px 10px 10px;
+        border-radius: 10px;
+        margin-bottom: 10px;
+        display: none;        
+    }
+
+    #login-body #checkBtn-login-body{	      	      		  
+		  transform: translateX(-50%);
+		  position: relative;		  
+		  left: 200px;
+		  width:400px;
+		  height:35px;
+		  background: linear-gradient(125deg,#81ecec,#6c5ce7,#81ecec);
+		  background-position: left;
+		  background-size: 200%;
+		  color:white;
+		  font-weight: bold;
+		  border:none;
+		  border-radius: 10px;
+		  cursor:pointer;
+		  transition: 0.4s;
+		  display:inline;
+		  margin-bottom: 20px;
+    }
+    
+        #login-body #loginBtn-login-body{
+        transform: translateX(-50%);
+		  position: relative;		  
+		  left: 200px;
+		  width:400px;
+		  height:35px;
+		  background: linear-gradient(125deg,#81ecec,#6c5ce7,#81ecec);
+		  background-position: left;
+		  background-size: 200%;
+		  color:white;
+		  font-weight: bold;
+		  border:none;
+		  border-radius: 10px;
+		  cursor:pointer;
+		  transition: 0.4s;
+		  display:none;
+    }
+    
+    #login-body #checkBtn-login-body:hover{
+		background-position: right;
+	}
+	
+	#login-body #loginBtn-login-body:hover{
+		background-position: right;
+	}
+
+    #login-else{
+      display: flex;
+      align-items: center;
+    }
+
+    #bar{
+      flex: auto;
+      border: none;
+      height: 1px;
+      background-color: gray;
+    }
+
+    #txt{
+      padding: 5px 5px;
+      font-size: 10px;
+    }
+
+    #login-kakao{
+      grid-area: kakao;
+    }
+
+    #login-naver{
+      grid-area: naver;
+     position: relative;
+    left: 90px;
+    }
+
+    #login-kakao-txt{
+      margin-left: 55px;
+      margin-top: 10px;
+    }
+
+    #login-naver-txt{
+      margin-left: 80px;
+      margin-top: 10px;
+    }
+
+    #login-loginbtn{
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 20px 20px;
+      gap: 10px;
+      grid-template-areas:
+      "kakao naver"
+    }
+
+    #kakao-login-btn{
+      display:block;
+      margin-left: 70px;      
+      width: 50%;
+    }
+
+    #naver_id_login{
+      display:block;     
+      margin-left: 70px; 
+      width: 50%;
+    }
+    
+.logintitle{
+	font-size: 20px;
+	font-weight: bold;
+	color: black;
+}
+
+.sociallogin{
+	font-size: 12px;
+	color: black;
+	line-height: 2.1;
+}
+
+#regFindBtn{
+	display: inline-flex;
+    position: relative;
+    left: 130px;
+}

@@ -1,0 +1,166 @@
+* {
+  margin: 0px;
+  padding: 0px;
+  text-decoration: none;
+  font-family:sans-serif;
+
+}
+
+body {
+  background-image:#34495e;
+}
+
+.needs-validation {
+  position:absolute;
+  width:600px;
+  height:400px;
+  padding: 30px, 20px;
+  background-color:#FFFFFF;
+  text-align:center;
+  top:30%;
+  left:50%;
+  transform: translate(-50%,-50%);
+  border-radius: 15px;
+}
+
+h2 {
+  text-align: center;
+  margin: 30px;
+}
+
+.title{
+	display: flex;
+}
+
+.textForm {
+  margin: 10px;
+  padding: 20px 10px;
+}
+
+.selectForm{
+	display: flex;
+	margin: 10px;
+  	padding: 10px 10px;
+  	text-align: left;
+}
+
+.formcontrol {
+  width: 100%;
+  border:none;
+  outline:none;
+  color: #636e72;
+  font-size:16px;
+  height:25px;
+  background: none;
+}
+
+.button {
+	margin-top: 20px;
+}
+
+.btn-regi {
+  position:relative;
+  left:40%;
+  transform: translateX(-50%);
+  margin-bottom: 40px;
+  width:80%;
+  height:40px;
+  background: linear-gradient(125deg,#81ecec,#6c5ce7,#81ecec);
+  background-position: left;
+  background-size: 200%;
+  color:white;
+  font-weight: bold;
+  border:none;
+  cursor:pointer;
+  transition: 0.4s;
+  display:inline;
+}
+
+.btn-regi:hover {
+  background-position: right;
+}
+
+
+#name:focus{
+border-color:#0070c9 !important;
+outline:none;
+box-shadow: 0 0 0 0.25rem rgba(4,99,250,0.25);
+}
+
+#nickname:focus{
+border-color:#0070c9 !important;
+outline:none;
+box-shadow: 0 0 0 0.25rem rgba(4,99,250,0.25);
+}
+
+#email:focus{
+border-color:#0070c9 !important;
+outline:none;
+box-shadow: 0 0 0 0.25rem rgba(4,99,250,0.25);
+}
+
+#password:focus{
+border-color:#0070c9 !important;
+outline:none;
+box-shadow: 0 0 0 0.25rem rgba(4,99,250,0.25);
+}
+
+#repasswd:focus{
+border-color:#0070c9 !important;
+outline:none;
+box-shadow: 0 0 0 0.25rem rgba(4,99,250,0.25);
+}
+
+#detailaddr:focus{
+border-color:#0070c9 !important;
+outline:none;
+box-shadow: 0 0 0 0.25rem rgba(4,99,250,0.25);
+}
+ /*회원가입시 유저사진 사이즈 */
+ #mDefault_image, #uDefault_image {
+  max-width: 100px; /* 원하는 너비로 설정 */
+  max-height: 100px; /* 원하는 높이로 설정 */
+  /* 다른 스타일링을 위한 추가적인 CSS 속성들 */
+}
+
+ #register-else{
+      display: flex;
+      align-items: center;
+    }
+
+ #bar{
+      flex: auto;
+      border: none;
+      height: 1px;
+      background-color: gray;
+    }
+
+.form-control:read-only {
+    background-color: white;
+    opacity: 1;
+}
+
+.blank{
+	margin-left: 20px;
+	margin-right: 20px;
+}
+    
+.nobox{
+	display: flex;
+	width: 600px;
+	margin-left: 50px;
+}
+
+.little{
+	text-align: left !important;
+	font-size: 12px;
+	margin-left: 5px;
+	margin-bottom: 5px;
+}
+
+#regi-form{
+	
+	position: relative;
+    top: 200px;
+	
+}

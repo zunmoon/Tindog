@@ -1,0 +1,58 @@
+.find{
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+}
+
+.idfind{
+	position: relative;
+	top: 50px;
+	right: 100px;
+}
+
+.pwfind{
+	position: relative;
+	top: 50px;
+	left: 100px;
+}
+
+.btnSearch{
+	display: flex;
+	justify-content: end;
+}
+
+#enter{
+	box-shadow: 1px 1px 3px 1px #dadce0;
+	background: white;
+	border: 1px solid #C7DCFB;
+	border-radius: 5px;
+	color: #8D8E92;
+	font-weight: 500;
+	width: 50%;
+	height: 40px;
+	margin-right: 10px;
+}
+
+#enter:hover{
+	cursor: pointer;
+	background: #C7DCFB;
+	color: white;
+}
+
+#reset{
+	box-shadow: 1px 1px 3px 1px #dadce0;
+	background: white;
+	border: 1px solid #C7DCFB;
+	border-radius: 5px;
+	color: #8D8E92;
+	font-weight: 500;
+	width: 50%;
+	height: 40px;
+}
+
+#reset:hover{
+	cursor: pointer;
+	background: #C7DCFB;
+	color: white;
+}

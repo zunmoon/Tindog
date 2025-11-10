@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="user">
+ 	
+ 	<insert id="insertDog" parameterType="kr.co.tindog.member.DogDTO">
+ 		INSERT INTO dogs(dogorder, dname, email, sex, dogcd, age, neutral, size, mainphoto, weight, dog_detail, gamereg, purpose)
+ 		VALUES(#{dogorder}, #{dname}, #{email}, #{sex}, #{dogcd}, #{age}, #{neutral}, #{size}, #{mainphoto}, #{weight}, #{dog_detail}, #{gamereg}, #{purpose})
+ 	</insert>
+
+	 <insert id="insertUser" parameterType="kr.co.tindog.member.UserDTO">
+ 		INSERT INTO member(email, name, nickname, password, birth, sex, phone, post, addr, detailaddr, signdate, memgrade, datearea, location, userphoto)
+ 		VALUES(#{email}, #{name}, #{nickname}, #{password}, #{birth}, #{sex}, #{phone}, #{post}, #{addr}, #{detailaddr}, DATE(NOW()), 'A', '전국', '0000', #{userphoto})
+ 	</insert>
+ 	
+ 
+ 	 <select id="dogList" parameterType="String" resultType="kr.co.tindog.member.DogDTO">
+			SELECT dogorder, dname, sex, dogcd, age, neutral, size, mainphoto, weight, dog_detail, gamereg, purpose, pic1, pic2, pic3, dbti
+			FROM dogs A INNER JOIN dogpics B
+			ON A.email = B.email
+			WHERE A.email = #{email}
+ 	</select>
+ 	
+	 <select id="userList" parameterType="String" resultType="kr.co.tindog.member.UserDTO">
+			SELECT email, name, nickname, birth, sex, post, addr, detailaddr, userphoto, gumqty
+			FROM member 
+			WHERE email=#{email}
+ 	</select>
+ 
+ 
+  	
+ 	<insert id="insertDogPics" parameterType="kr.co.tindog.member.DogDTO">
+ 		INSERT INTO dogpics(email, pic1, pic2, pic3)
+ 		VALUES(#{email}, #{pic1}, #{pic2}, #{pic3})
+ 	</insert>
+ 	
+	<select id="followList" parameterType="String" resultType="java.util.Map">
+		SELECT D1.EMAIL, DNAME, NICKNAME
+		  FROM (
+				SELECT EMAIL, DNAME
+				  FROM DOGS
+				 WHERE EMAIL IN (
+								SELECT FOLLOWEMAIL
+								FROM FOLLOW
+								WHERE EMAIL = #{email}
+				               )
+				   AND DOGORDER = 1
+		       ) D1 JOIN MEMBER M1 ON M1.EMAIL = D1.EMAIL
+	</select>
+	
+	<delete id="followDelete" parameterType="String">
+		DELETE FROM FOLLOW WHERE FOLLOWEMAIL = #{email}
+	</delete>
+	
+	<select id="dogType" resultType="java.util.Map">
+		SELECT DOGCD, DOGTYPE
+		  FROM DOGTYPE
+	</select>
+	
+	<select id="nickDupCheck" parameterType="String" resultType="String">
+ 		select nickname
+		from member
+		where nickname = #{nickname}
+ 	</select>
+ 	
+ 	 	<select id="emailDupCheck" parameterType="String" resultType="String">
+ 		select email
+		from member
+		where email = #{email}
+ 	</select>
+ 	
+ 	<!-- 회원탈퇴 -->
+	<select id="userdtoList" parameterType="String" resultType="String">  
+			SELECT password
+			FROM member 
+			WHERE email=#{email}
+ 	</select> 
+ 	
+ 
+ 	<update id="delete" parameterType="String"> 
+		update member
+		set memgrade="F"
+		where email = #{email}
+	</update>
+</mapper>
+ 
+ 
+ 

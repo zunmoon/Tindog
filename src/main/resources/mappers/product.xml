@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- product.xml -->
+
+<mapper namespace="product">
+    
+    <insert id="insert" parameterType="java.util.Map">
+		
+		INSERT INTO USED_PRODUCT(UPRODUCT_NO, SUBJECT, NICKNAME, PRICE, INFO, UPRODUCT_CD, AREA, MAINPHOTO, PHOTO)
+		VALUES(#{uproduct_no}, #{subject}, #{nickname}, #{price}, #{info}, #{uproduct_cd}, #{area}, #{mainphoto}, #{photo})
+	
+	</insert>
+	
+	<select id="list" resultType="java.util.Map">
+	   SELECT UPRODUCT_NO, SUBJECT, NICKNAME, UPRODUCT_CD, PRICE, INFO, STATUS, AREA, LOCATION, MAINPHOTO, PHOTO,
+	   CASE
+               WHEN STATUS = 1 THEN '판매중'
+               WHEN STATUS = 2 THEN '판매완료'
+               ELSE '알 수 없음'
+           END AS STATUS_TEXT
+	   FROM USED_PRODUCT
+	   ORDER BY SUBJECT
+	
+	</select>
+	
+	<select id="search" resultType="java.util.Map" parameterType="String">
+	
+	  SELECT UPRODUCT_NO, SUBJECT, NICKNAME, UPRODUCT_CD, PRICE, INFO, STATUS, AREA, LOCATION, MAINPHOTO, PHOTO
+	  FROM USED_PRODUCT
+	  WHERE SUBJECT LIKE #{keyword}
+	  ORDER BY SUBJECT   
+		
+	</select>
+	
+	
+	<select id="detail" resultType="java.util.Map" parameterType="int">
+		SELECT UPRODUCT_NO, SUBJECT, NICKNAME, UPRODUCT_CD, PRICE, INFO, STATUS, AREA, LOCATION, MAINPHOTO, PHOTO,
+		CASE
+               WHEN STATUS = 1 THEN '판매중'
+               WHEN STATUS = 2 THEN '판매완료'
+               ELSE '알 수 없음'
+           END AS STATUS_TEXT
+		FROM USED_PRODUCT
+		WHERE UPRODUCT_NO = #{uproduct_no}
+    </select>
+    
+    <select id="mainphoto" resultType="String" parameterType="int">
+		SELECT MAINPHOTO
+		FROM USED_PRODUCT
+		WHERE UPRODUCT_NO = #{uproduct_no}
+	</select>
+	
+	<select id="photo" resultType="String" parameterType="int">
+		SELECT PHOTO
+		FROM USED_PRODUCT
+		WHERE UPRODUCT_NO = #{uproduct_no}
+	</select>
+	
+	<delete id="delete" parameterType="int">
+		DELETE FROM USED_PRODUCT
+        WHERE UPRODUCT_NO= #{uproduct_no}
+	</delete>
+	
+	<update id="update" parameterType="java.util.Map">
+	    UPDATE USED_PRODUCT
+	    SET SUBJECT = #{subject}
+	       ,PRICE = #{price}
+	       ,INFO = #{info}
+	       ,STATUS = #{status}
+	       ,MAINPHOTO = #{mainphoto}
+	       ,PHOTO = #{photo}
+	    WHERE UPRODUCT_NO= #{uproduct_no}
+	</update>
+	
+	 <select id="userphoto" parameterType="String"
+		resultType="String">
+	   SELECT MEMBER.USERPHOTO
+	   FROM USED_PRODUCT JOIN MEMBER
+	   ON USED_PRODUCT.NICKNAME=MEMBER.NICKNAME
+	   WHERE USED_PRODUCT.NICKNAME=#{nickname}
+	   LIMIT 1
+	 
+	</select>
+	
+</mapper>
